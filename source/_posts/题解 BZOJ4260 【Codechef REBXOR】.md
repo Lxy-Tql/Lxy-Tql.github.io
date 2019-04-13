@@ -1,5 +1,6 @@
 ---
 title: 题解 BZOJ4260 【Codechef REBXOR】
+date: 2019-03-27 20:50:51
 top: 1
 tag: 
 - 题解

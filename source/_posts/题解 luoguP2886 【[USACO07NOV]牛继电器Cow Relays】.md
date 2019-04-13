@@ -1,5 +1,6 @@
 ---
 title: 题解 luoguP2886 【[USACO07NOV]牛继电器Cow Relays】
+date: 2019-03-18 17:56:44
 top: 1
 tag:
 - 题解

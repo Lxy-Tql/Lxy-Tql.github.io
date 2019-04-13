@@ -1,5 +1,6 @@
 ---
 title: 题解 luoguP1344 【[USACO4.4]追查坏牛奶Pollutant Control】
+date: 2019-03-27 20:49:56
 top: 1
 tag: 
 - 题解

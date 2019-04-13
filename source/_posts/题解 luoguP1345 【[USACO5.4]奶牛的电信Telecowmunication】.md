@@ -1,5 +1,6 @@
 ---
 title: 题解 luoguP1345 【[USACO5.4]奶牛的电信Telecowmunication】
+date: 2019-03-27 20:51:28
 top: 1
 tag: 
 - 题解
