@@ -7,6 +7,8 @@ tag:
 - Luogu
 - 动态规划
 ---
+[传送门](https://www.luogu.org/problemnew/show/P2051)
+
 经过多次爆蛋，还是~~秒~~切了此题。
 
 一道少数没看题解做的题，~~哇居然是紫题我好牛逼~~。
