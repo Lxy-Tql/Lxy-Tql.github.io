@@ -30,7 +30,7 @@ w_1\times a+w_2\times a+w_3\times a…+w_n\times a=ans\times a
 $$
 于是又有：
 $$
-w1\times a+1+w2\times a+1+w3\times a+1…+wn\times a+1=ans\times a+k
+w1\times a+1+w2\times a+1+w3\times a+1…+wn\times a+1=ans\times a+k=newans
 $$
 $k$为最小割的边数，$k<=m<=1000$
 
