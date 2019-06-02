@@ -15,7 +15,9 @@ tag:
 
 先考虑怎么求一个$l$到$r$子段的异或和$($异或和：所有数异或起来的值$)$：
 
-$a_l\oplus a_{l+1}\oplus...\oplus a_{r-1} \oplus a_{r}=(a_1\oplus a_2\oplus...\oplus a_{r-1} \oplus a_{r})\oplus(a_1\oplus a_2\oplus...\oplus a_{l-2} \oplus a_{l-1})$
+$$
+a_l\oplus a_{l+1}\oplus...\oplus a_{r-1} \oplus a_{r}=(a_1\oplus a_2\oplus...\oplus a_{r-1} \oplus a_{r})\oplus(a_1\oplus a_2\oplus...\oplus a_{l-2} \oplus a_{l-1})
+$$
 
 所以处理出异或前缀和，不断加入$01Trie$树求解即可。
 
