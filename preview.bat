@@ -1,3 +1,3 @@
-cd /d D:/blog/lxy666
+cd /d F:/blog/lxy666
 hexo s
 pause
