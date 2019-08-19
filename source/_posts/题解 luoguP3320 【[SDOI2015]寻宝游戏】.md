@@ -6,7 +6,7 @@ tag:
 - 题解
 - Luogu
 - LCA
-- set
+- 平衡树
 ---
 [传送门](https://www.luogu.org/problemnew/show/P3320)
 
