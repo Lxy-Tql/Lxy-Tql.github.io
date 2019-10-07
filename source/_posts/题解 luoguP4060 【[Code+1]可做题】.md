@@ -1,5 +1,5 @@
 ---
-title: 题解 luoguP4060 【[Code+#1]可做题】
+title: 题解 luoguP4060 【[Code+1]可做题】
 date: 2019-10-07 20:32:29
 top: 1
 tag: 
