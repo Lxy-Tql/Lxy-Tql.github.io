@@ -1,5 +1,5 @@
 ---
-title: 题解 CF1067A 【Array Without Local Maximums 】
+title: 题解 CF1067A 【Array Without Local Maximums】
 date: 2019-12-19 21:05:39
 top: 1
 tag: 
