@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title><![CDATA[题解 CF1067A 【Array Without Local Maximums 】]]></title>
+    <title><![CDATA[题解 CF1067A 【Array Without Local Maximums】]]></title>
     <url>%2F2019%2F12%2F19%2F%E9%A2%98%E8%A7%A3%20CF1067A%20%E3%80%90Array%20Without%20Local%20Maximums%E3%80%91%2F</url>
     <content type="text"><![CDATA[传送门 记$f[i][j][0/1]$表示前$i$个数，第$i$个数取$j$，左边一个数是否大于等于这个数（满足条件为$1$，否则为$0$）的方案数。 转移时，如果这一位为$-1$，枚举这一位的数字$1\sim200$，枚举上一位的数字$1\sim 200$转移。 代码如下：1234567for(int j=1;j&lt;=200;j++)&#123;//当前位 for(int k=1;k&lt;=200;k++)&#123;//上一位 if(k==j) f[i][j][1]=(f[i][j][1]+f[i-1][k][0]+f[i-1][k][1])%mo; if(k&gt;j) f[i][j][1]=(f[i][j][1]+f[i-1][k][1])%mo; if(k&lt;j) f[i][j][0]=(f[i][j][0]+f[i-1][k][0]+f[i-1][k][1])%mo; &#125; &#125; 如果这一位不为$-1$，省去当前位的枚举。 可以发现这样转移是$O(40000\times n)$的，无法通过。 观察到从上一位转移过来的$f[i-1][k][0/1]$是连续的一段，那么前缀和优化即可。 复杂度$O(200\times n)$。 我为什么要写这么水的题的题解？？既然写了那就交吧。 $Code\ Below:$1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859#include&lt;bits/stdc++.h&gt;#define ts cout&lt;&lt;"ok"&lt;&lt;endl#define int long long#define hh puts("")#define pc putchar#define mo 998244353//#define getchar() (p1==p2&amp;&amp;(p2=(p1=buf)+fread(buf,1,1&lt;&lt;21,stdin),p1==p2)?EOF:*p1++)//char buf[1&lt;&lt;21],*p1=buf,*p2=buf;using namespace std;const int N=100005,M=205;int n,a[N],f[N][M][2],ans,pre[M][2],suf[M][2];inline int read()&#123; int ret=0,ff=1;char ch=getchar(); while(!isdigit(ch))&#123;if(ch=='-') ff=-1;ch=getchar();&#125; while(isdigit(ch))&#123;ret=ret*10+(ch^48);ch=getchar();&#125; return ret*ff;&#125;void write(int x)&#123;if(x&lt;0)&#123;x=-x,pc('-');&#125;if(x&gt;9) write(x/10);pc(x%10+48);&#125;void writeln(int x)&#123;write(x),hh;&#125;void writesp(int x)&#123;write(x),pc(' ');&#125;signed main()&#123; n=read(); for(int i=1;i&lt;=n;i++) a[i]=read(); if(a[1]==-1) for(int i=1;i&lt;=200;i++) f[1][i][0]=1; else f[1][a[1]][0]=1; for(int j=1;j&lt;=200;j++)&#123; pre[j][0]=(pre[j-1][0]+f[1][j][0])%mo; pre[j][1]=(pre[j-1][1]+f[1][j][1])%mo; &#125; for(int j=200;j&gt;=1;j--)&#123; suf[j][0]=(suf[j+1][0]+f[1][j][0])%mo; suf[j][1]=(suf[j+1][1]+f[1][j][1])%mo; &#125; for(int i=2;i&lt;=n;i++)&#123; if(a[i]==-1)&#123; for(int j=1;j&lt;=200;j++)&#123; f[i][j][1]=(f[i][j][1]+f[i-1][j][0]+f[i-1][j][1])%mo; f[i][j][1]=(f[i][j][1]+suf[j+1][1])%mo; f[i][j][0]=(f[i][j][0]+pre[j-1][0]+pre[j-1][1])%mo; &#125; &#125; else&#123; f[i][a[i]][1]=(f[i][a[i]][1]+f[i-1][a[i]][0]+f[i-1][a[i]][1])%mo; f[i][a[i]][1]=(f[i][a[i]][1]+suf[a[i]+1][1])%mo; f[i][a[i]][0]=(f[i][a[i]][0]+pre[a[i]-1][0]+pre[a[i]-1][1])%mo; &#125; for(int j=1;j&lt;=200;j++)&#123; pre[j][0]=(pre[j-1][0]+f[i][j][0])%mo; pre[j][1]=(pre[j-1][1]+f[i][j][1])%mo; &#125; for(int j=200;j&gt;=1;j--)&#123; suf[j][0]=(suf[j+1][0]+f[i][j][0])%mo; suf[j][1]=(suf[j+1][1]+f[i][j][1])%mo; &#125; &#125; for(int i=1;i&lt;=200;i++) ans=(ans+f[n][i][1])%mo; write(ans); return 0;&#125;]]></content>
       <tags>
@@ -146,8 +146,8 @@
       <tags>
         <tag>题解</tag>
         <tag>Luogu</tag>
-        <tag>平衡树</tag>
         <tag>树状数组</tag>
+        <tag>平衡树</tag>
       </tags>
   </entry>
   <entry>
