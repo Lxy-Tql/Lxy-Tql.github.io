@@ -33,101 +33,101 @@ tag:
 
 $Code Below$
 ```cpp
-#includebitsstdc++.h
-#define ts coutokendl
+#include<bits/stdc++.h>
+#define ts cout<<"ok"<<endl
 #define int long long
-#define hh puts()
+#define hh puts("")
 #define pc putchar
-#define ls(x) ((x)1)
-#define rs(x) ((x)11)
-#define getchar() (p1==p2&&(p2=(p1=buf)+fread(buf,1,121,stdin),p1==p2)EOFp1++)
-char buf[121],p1=buf,p2=buf;
+#define ls(x) ((x)<<1)
+#define rs(x) ((x)<<1|1)
+//#define getchar() (p1==p2&&(p2=(p1=buf)+fread(buf,1,1<<21,stdin),p1==p2)?EOF:*p1++)
+//char buf[1<<21],*p1=buf,*p2=buf;
 using namespace std;
 const int N=200005;
 int n,m,p1,p2,a[N],st[N],top,L[N],R[N],cnt,tot;
-int tr[N2],tag[N2],ans[N];
+int tr[N<<2],tag[N<<2],ans[N];
 struct que{
-	int x,l,r,v,id;
-	friend bool operator  (que A,que B){
-		return A.xB.x;
-	}
-}q[N1];
+    int x,l,r,v,id;
+    friend bool operator < (que A,que B){
+        return A.x<B.x;
+    }
+}q[N<<1];
 struct ope{
-	int x,l,r,v;
-	friend bool operator  (ope A,ope B){
-		return A.xB.x;
-	}
-}op[N2];
+    int x,l,r,v;
+    friend bool operator < (ope A,ope B){
+        return A.x<B.x;
+    }
+}op[N<<2];
 inline int read(){
     int ret=0,ff=1;char ch=getchar();
     while(!isdigit(ch)){if(ch=='-') ff=-1;ch=getchar();}
-    while(isdigit(ch)){ret=ret10+(ch^48);ch=getchar();}
-    return retff;
+    while(isdigit(ch)){ret=ret*10+(ch^48);ch=getchar();}
+    return ret*ff;
 }
-void write(int x){if(x0){x=-x,pc('-');}if(x9) write(x10);pc(x%10+48);}
+void write(int x){if(x<0){x=-x,pc('-');}if(x>9) write(x/10);pc(x%10+48);}
 void writeln(int x){write(x),hh;}
 void writesp(int x){write(x),pc(' ');}
 void push_down(int l,int r,int k){
-	int mid=(l+r)1;
-	tag[ls(k)]+=tag[k];
-	tag[rs(k)]+=tag[k];
-	tr[ls(k)]+=tag[k](mid-l+1);
-	tr[rs(k)]+=tag[k](r-mid);
-	tag[k]=0;
+    int mid=(l+r)>>1;
+    tag[ls(k)]+=tag[k];
+    tag[rs(k)]+=tag[k];
+    tr[ls(k)]+=tag[k]*(mid-l+1);
+    tr[rs(k)]+=tag[k]*(r-mid);
+    tag[k]=0;
 }
 void update(int l,int r,int x,int y,int v,int k){
-	if(x=l&&r=y){
-		tr[k]+=(r-l+1)v;
-		tag[k]+=v;
-		return;
-	}
-	push_down(l,r,k);
-	int mid=(l+r)1;
-	if(x=mid) update(l,mid,x,y,v,ls(k));
-	if(mid+1=y) update(mid+1,r,x,y,v,rs(k));
-	tr[k]=tr[ls(k)]+tr[rs(k)];
+    if(x<=l&&r<=y){
+        tr[k]+=(r-l+1)*v;
+        tag[k]+=v;
+        return;
+    }
+    push_down(l,r,k);
+    int mid=(l+r)>>1;
+    if(x<=mid) update(l,mid,x,y,v,ls(k));
+    if(mid+1<=y) update(mid+1,r,x,y,v,rs(k));
+    tr[k]=tr[ls(k)]+tr[rs(k)];
 }
 int query(int l,int r,int x,int y,int k){
-	if(x=l&&r=y) return tr[k];
-	push_down(l,r,k);
-	int mid=(l+r)1,res=0;
-	if(x=mid) res+=query(l,mid,x,y,ls(k));
-	if(mid+1=y) res+=query(mid+1,r,x,y,rs(k));
-	return res;
+    if(x<=l&&r<=y) return tr[k];
+    push_down(l,r,k);
+    int mid=(l+r)>>1,res=0;
+    if(x<=mid) res+=query(l,mid,x,y,ls(k));
+    if(mid+1<=y) res+=query(mid+1,r,x,y,rs(k));
+    return res;
 }
 signed main(){
-	n=read(),m=read(),p1=read(),p2=read();
-	for(int i=1;i=n;i++) a[i]=read();
-	st[top=0]=0;
-	for(int i=1;i=n;i++){
-		while(top&&a[i]a[st[top]]) top--;
-		L[i]=st[top];st[++top]=i;
-	}
-	st[top=0]=n+1;
-	for(int i=n;i=1;i--){
-		while(top&&a[i]a[st[top]]) top--;
-		R[i]=st[top];st[++top]=i;
-	}
-	for(int i=1;i=m;i++){
-		int l=read(),r=read();ans[i]=(r-l)p1;(i,i+1)的贡献 
-		q[++cnt]=(que){l-1,l,r,-1,i};
-		q[++cnt]=(que){r,l,r,1,i};
-	}
-	sort(q+1,q+cnt+1);
-	for(int i=1;i=n;i++){
-		if(L[i]=1&&R[i]=n) op[++tot]=(ope){R[i],L[i],L[i],p1};
-		if(L[i]=1&&R[i]-1=i+1) op[++tot]=(ope){L[i],i+1,R[i]-1,p2};
-		if(L[i]+1=i-1&&R[i]=n) op[++tot]=(ope){R[i],L[i]+1,i-1,p2};
-	}
-	sort(op+1,op+tot+1);
-	for(int i=1,j=1;i=cnt;i++){
-		while(j=tot&&op[j].x=q[i].x){
-			update(1,n,op[j].l,op[j].r,op[j].v,1);
-			j++;
-		}
-		ans[q[i].id]+=q[i].vquery(1,n,q[i].l,q[i].r,1);
-	}
-	for(int i=1;i=m;i++) writeln(ans[i]);
+    n=read(),m=read(),p1=read(),p2=read();
+    for(int i=1;i<=n;i++) a[i]=read();
+    st[top=0]=0;
+    for(int i=1;i<=n;i++){
+        while(top&&a[i]>a[st[top]]) top--;
+        L[i]=st[top];st[++top]=i;
+    }
+    st[top=0]=n+1;
+    for(int i=n;i>=1;i--){
+        while(top&&a[i]>a[st[top]]) top--;
+        R[i]=st[top];st[++top]=i;
+    }
+    for(int i=1;i<=m;i++){
+        int l=read(),r=read();ans[i]=(r-l)*p1;//(i,i+1)的贡献 
+        q[++cnt]=(que){l-1,l,r,-1,i};
+        q[++cnt]=(que){r,l,r,1,i};
+    }
+    sort(q+1,q+cnt+1);
+    for(int i=1;i<=n;i++){
+        if(L[i]>=1&&R[i]<=n) op[++tot]=(ope){R[i],L[i],L[i],p1};
+        if(L[i]>=1&&R[i]-1>=i+1) op[++tot]=(ope){L[i],i+1,R[i]-1,p2};
+        if(L[i]+1<=i-1&&R[i]<=n) op[++tot]=(ope){R[i],L[i]+1,i-1,p2};
+    }
+    sort(op+1,op+tot+1);
+    for(int i=1,j=1;i<=cnt;i++){
+        while(j<=tot&&op[j].x<=q[i].x){
+            update(1,n,op[j].l,op[j].r,op[j].v,1);
+            j++;
+        }
+        ans[q[i].id]+=q[i].v*query(1,n,q[i].l,q[i].r,1);
+    }
+    for(int i=1;i<=m;i++) writeln(ans[i]);
     return 0;
 }
 ```
